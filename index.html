@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <title>Frontend Mentor | Rock, Paper, Scissors</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="backdrop not-active" id="backdrop">
+      <div class="modal">
+        <h1>Rules <img src="./images/icon-close.svg" alt="" id="close"></h1>
+        <div class="imgBox"></div>
+      </div>
+    </div>
+
+    <header>
+      <h1>
+        Rock Paper Scissors
+      </h1>
+      <h2>
+        <span class="score">
+          Score
+        </span>
+        <span id="score">
+          10
+        </span>
+      </h2>
+    </header>
+    <main>
+      <div class="step-1" id="step1">
+        <button class="step-1-btns paper" id="paper"></button>
+        <button class="step-1-btns scissors" id="scissors"></button>
+        <button class="step-1-btns rock" id="rock"></button>
+        <div class="triangle">
+          <div class="sides one"></div>
+          <div class="sides two"></div>
+          <div class="sides three"></div>
+        </div>
+      </div>
+      <div class="step-2" id="step2">
+        <div class="user section">
+          <p style="--i:0">You Picked</p>
+          <button style="--i:1" id="user-choice"></button>
+        </div>
+        <div class="play-again">
+          <p class="result-msg" id="result">You Lose</p>
+          <button id="play-again">Play Again</button>
+        </div>
+        <div class="bot section">
+          <p style="--i:2">The House Picked</p>
+          <button style="--i:3" id="house-choice"></button>
+        </div>
+      </div>
+    </main>
+    <!-- You Picked
+    The House Picked
+    
+    You Win
+    You Lose
+    
+    Play Again -->
+    <footer>
+      <button id="open">Rules</button>
+    </footer>
+  </div>
+</body>
+
+</html>

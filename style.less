@@ -1,0 +1,455 @@
+:root {
+  --dark-text: hsl(229, 25%, 31%);
+  --score-text: hsl(229, 64%, 46%);
+  --header-outline: hsl(217, 16%, 45%);
+  --text-color: hsl(213, 7%, 74%);
+
+  // - Scissors Gradient: hsl(39, 89%, 49%) to hsl(40, 84%, 53%)
+  // - Paper Gradient: hsl(230, 89%, 62%) to hsl(230, 89%, 65%)
+  // - Rock Gradient: hsl(349, 71%, 52%) to hsl(349, 70%, 56%)
+  // - Lizard Gradient: hsl(261, 73%, 60%) to hsl(261, 72%, 63%)
+  // - Cyan: hsl(189, 59%, 53%) to hsl(189, 58%, 57%)
+  // Black (with 75% opacity for lightbox background)
+}
+@font-face {
+  font-family: 'barlow';
+  src: url(./fonts/BarlowSemiCondensed-SemiBold.ttf);
+}
+@font-face {
+  font-family: 'barlow-bd';
+  src: url(./fonts/BarlowSemiCondensed-Bold.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+body {
+  width: 100%;
+  height: 100vh;
+  font-family: 'barlow';
+  background: -webkit-radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
+  background: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
+  color: var(--text-color);
+  overflow: hidden;
+}
+.container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: inherit;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  @media screen and (max-width: 638px) {
+    padding: 0.2rem;
+  }
+}
+header {
+  width: 60vw;
+  border: 3px solid currentColor;
+  outline: none;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  @media screen and (max-width: 638px) {
+    width: 90vw;
+  }
+
+  h1 {
+    width: 100px;
+    text-transform: uppercase;
+    color: #fff;
+    @media screen and (max-width: 638px) {
+      font-size: 1.5rem;
+    }
+  }
+  h2 {
+    width: 120px;
+    height: 100%;
+    background: #ddd;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-radius: inherit;
+    @media screen and (max-width: 638px) {
+      width: 100px;
+    }
+
+    .score {
+      color: var(--score-text);
+      text-transform: uppercase;
+      font-size: 1rem;
+      letter-spacing: 2px;
+    }
+    #score {
+      color: #555;
+      font-family: 'barlow-bd';
+      font-size: 4rem;
+      @media screen and (max-width: 638px) {
+        font-size: 3rem;
+      }
+    }
+  }
+}
+
+main {
+  width: 100%;
+  height: 60vh;
+  // background: khaki;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main .step-1 {
+  z-index: 5;
+  width: 600px;
+  height: 100%;
+  // background: lightcoral;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+
+  button {
+    margin: 0 40px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    gap: 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    border: 25px solid blue;
+    color: red;
+    box-shadow: 0 10px 0px rgba(0, 0, 0, 0.3), 0 10px 0px currentColor,
+      0 10px 0 rgba(0, 0, 0, 0.15) inset;
+    border-color: currentColor;
+    transition: 0.3s;
+  }
+  button:nth-child(1) {
+    background-image: url(./images/icon-paper.svg);
+    color: hsl(230, 89%, 62%);
+  }
+  button:nth-child(2) {
+    background-image: url(./images/icon-scissors.svg);
+    color: hsl(40, 84%, 53%);
+  }
+  button:nth-child(3) {
+    background-image: url(./images/icon-rock.svg);
+    color: hsl(349, 70%, 56%);
+  }
+  button:active {
+    transform: scale(0.5);
+  }
+  .triangle {
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -45%);
+    width: 300px;
+    height: 300px;
+    // background: rgba(0, 0, 0,0.2);
+    // filter: drop-shadow(0 0 20px red);
+    // box-shadow: 0 0 50px black;
+    .sides {
+      position: absolute;
+      width: 100%;
+      height: 15px;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    .sides.one {
+      transform: rotate(60deg);
+      transform-origin: left;
+    }
+    .sides.two {
+      transform: rotate(-60deg);
+      transform-origin: right;
+    }
+  }
+  @media screen and (max-width: 638px) {
+    width: 100%;
+    button {
+      margin: 0 40px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      gap: 0px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 50%;
+      border: 10px solid blue;
+      color: red;
+      box-shadow: 0 5px 0px rgba(0, 0, 0, 0.3), 0 5px 0px currentColor,
+        0 5px 0 rgba(0, 0, 0, 0.15) inset;
+      border-color: currentColor;
+      transition: 0.3s;
+    }
+    .triangle {
+      position: absolute;
+      z-index: -1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -80%);
+      width: 250px;
+      height: 200px;
+    }
+  }
+}
+main .step-2 {
+  z-index: 5;
+  width: 600px;
+  height: 100%;
+  // background: lightcoral;
+  display: flex;
+  justify-content: space-around;
+  animation: anim-width 0.5s linear 2s forwards;
+  .play-again {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    animation: anim-play 1s ease-out forwards 2.5s;
+    .result-msg {
+      text-align: center;
+      padding-bottom: 1rem;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 4vw;
+      letter-spacing: 2px;
+    }
+    button {
+      color: hsl(349, 70%, 56%);
+      padding: 1vw 2vw;
+      background: #fff;
+      font-family: 'barlow-bd';
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 2vw;
+      outline: none;
+      border: none;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+    button:active {
+      transform: scale(0.5);
+    }
+  }
+  .section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    p {
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      opacity: 0;
+      animation: anim-opac 0.7s linear calc(var(--i) * 0.5s) forwards;
+    }
+    button {
+      margin: 0 40px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      gap: 20px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 50%;
+      border: 30px solid blue;
+      color: red;
+      box-shadow: 0 10px 0px rgba(0, 0, 0, 0.3), 0 10px 0px currentColor,
+      0 10px 0 rgba(0, 0, 0, 0.15) inset;
+      border-color: currentColor;
+      transition: 0.3s;
+      opacity: 0;
+      animation: anim-opac 1s linear calc(var(--i) * 0.5s) forwards;
+    }
+  }
+  @media screen and (max-width: 638px) {
+    width: 100%;
+    .section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      p {
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 1rem;
+        letter-spacing: 2px;
+        opacity: 0;
+        padding: 2rem 0;
+        animation: anim-opac 0.7s linear calc(var(--i) * 0.5s) forwards;
+      }
+      button {
+        margin: 0 10px;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        gap: 20px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 50%;
+        border: 0px solid blue;
+        color: red;
+        /* box-shadow won't work as bcoz, its keep changing from javascript */
+        border-color: currentColor;
+        transition: 0.3s;
+        opacity: 0;
+        animation: anim-opac 1s linear calc(var(--i) * 0.5s) forwards;
+      }
+    }
+  }
+}
+@keyframes anim-opac {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes anim-play {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes anim-width {
+  0% {
+    width: 600px;
+  }
+  100% {
+    width: 1050px;
+  }
+}
+
+footer {
+  width: 100%;
+  height: 10vh;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 2em;
+  button {
+    color: var(--text-color);
+    padding: 0.4rem 2rem;
+    background: none;
+    font-family: 'barlow-bd';
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 20px;
+    border: 3px solid currentColor;
+    outline: none;
+    border-radius: 10px;
+  }
+  @media screen and (max-width: 638px){
+    justify-content: center;
+  }
+}
+
+.backdrop.not-active {
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: 0.5s;
+}
+.backdrop {
+  opacity: 1;
+  transform: translateY(0);
+  position: absolute;
+  z-index: 30;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+  .modal {
+    width: 450px;
+    height: 400px;
+    background: #fff;
+    padding: 2em 1.5em;
+    border-radius: 10px;
+    h1 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-transform: uppercase;
+      color: var(--dark-text);
+    }
+    .imgBox {
+      width: calc(450px - 3em);
+      height: calc(400px - 7em);
+      background-image: url(./images/desktop-rules-modal.jpg);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+}
+
+@media screen and (max-width: 1110px) {
+  .backdrop.not-active {
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: 0.5s;
+  }
+  .backdrop {
+    opacity: 1;
+    transform: translateY(0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    .modal {
+      width: 350px;
+      height: 350px;
+      background: #fff;
+      padding: 1em 1.5em;
+      border-radius: 10px;
+      h1 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-transform: uppercase;
+        color: var(--dark-text);
+      }
+      .imgBox {
+        width: 100%;
+        height: calc(100% - 2em);
+        background-image: url(./images/desktop-rules-modal.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    }
+  }
+}
